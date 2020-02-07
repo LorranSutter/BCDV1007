@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded",function() { // notice the event he
     }
     
     function collision(x,y,size) {
-      console.log(`${x} ${y}`);
       if (x + size > canvas.width) {
         return true;
       } else if (x - size < 0) {
@@ -40,19 +39,19 @@ document.addEventListener("DOMContentLoaded",function() { // notice the event he
     let body = document.querySelector("body");
     body.addEventListener("keydown", event => {
       let diff = 5;
-      if(event.isComposing || event.keyCode == 87 || event.keyCode == 119) {
+      if(event.keyCode == 87 || event.keyCode == 119) {
         if (!collision(x,y-diff,size)) {
           y -= diff;
         }
-      } else if(event.isComposing || event.keyCode == 68 || event.keyCode == 100) {
+      } else if(event.keyCode == 68 || event.keyCode == 100) {
         if (!collision(x,x+diff,size)) {
           x += diff;
         }
-      } else if(event.isComposing || event.keyCode == 83 || event.keyCode == 115) {
+      } else if(event.keyCode == 83 || event.keyCode == 115) {
         if (!collision(x,y+diff,size)) {
           y += diff;
         }
-      } else if(event.isComposing || event.keyCode == 65 || event.keyCode == 97) {
+      } else if(event.keyCode == 65 || event.keyCode == 97) {
         if (!collision(x,x-diff,size)) {
           x -= diff;
         }
