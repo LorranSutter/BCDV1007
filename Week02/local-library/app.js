@@ -6,7 +6,6 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var coolRouter = require('./routes/cool');
 
 //Import the mongoose module
 var mongoose = require('mongoose');
