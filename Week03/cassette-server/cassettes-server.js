@@ -16,16 +16,6 @@ app.get('/', function(req, res) {
 });
 
 app.get('/api/cassettes', function(req, res) {
-    // let cassettesList = [
-    //     {title: 'Careless whisperer'},
-    //     {title: 'Thriller'},
-    //     {title: 'Ok Computer'},
-    //     {title: 'Cermemonials'},
-    //     {title: 'Call the Doctor'},
-    //     {title: 'Blue in Green'}
-    // ];
-    // res.send(cassettesList);
-
     function sendDataCallback(err, docs) {
         if (docs) {
             res.json(docs);
