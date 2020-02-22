@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoIO = require('./io.js')
+const mongoDB = require('mongodb');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -39,7 +40,7 @@ app.get('/api/cassettes', function(req, res) {
 
 function PostCassetteAPI(req, res, next) {
     try {
-        mongoIO.writeItem({ title: req.body.title });   
+        mongoIO.writeItem({ title: req.body.title });
     } catch (error) {
         next(error);
     }
@@ -50,13 +51,19 @@ app.post('/api/cassettes', PostCassetteAPI);
 
 function DeleteCassetteAPI(req, res, next) {
     try {
-        mongoIO.deleteItem({ title: req.body.title });
+        mongoIO.deleteItem({ _id: mongoDB.ObjectID(req.body._id), title: req.body.title });
+        res.send({ _id: mongoDB.ObjectID(req.body._id) });
     } catch (error) {
         next(error);
     }
-    res.redirect('/cassettes.html');
 }
 
 app.delete('/api/cassettes', DeleteCassetteAPI);
+
+function PantsAPI(req, res, next) {
+    res.json('pants pants pants !!');
+}
+
+app.get('/api/pants', PantsAPI);
 
 app.listen(port, function() {console.log(`Example cassette server is running on port ${port}!`)});

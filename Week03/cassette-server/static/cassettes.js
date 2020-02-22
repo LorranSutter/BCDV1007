@@ -1,14 +1,23 @@
 $(document).ready(function () {
     let cassette_list = $('#cassette-list');
 
-    function successfulDeleteHandler(data, status, req) {
+    function successfulDeleteHandler(data) {
         console.log(data);
+		var selector = `button[id='${data._id}']`;
+		var button = $(selector);
+		var parent = button.parent();
+		parent.remove()		
     }
 
-    function deleteHandler() {
+    function deleteHandler(e) {
+        let title = e.target.name;
         $.ajax(
             '/api/cassettes',
-            {method: 'delete', success: successfulDeleteHandler}
+            {
+                method: 'DELETE',
+                success: successfulDeleteHandler,
+                data: {_id: e.target.id, title: title}
+            }
         )
     }
 
